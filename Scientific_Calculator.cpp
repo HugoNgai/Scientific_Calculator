@@ -195,46 +195,67 @@ void operate()
 	{
 		if (!is_OPTR(ch))
 			{
-				if (isdigit(ch))   									//judge number                                
+				if (isdigit(ch)||ch=='.')   									//judge number                                
 				{
-					temp=atof(&ch);
-					temp1 = temp;
-					ch=array[++j];
+					if (ch != '.')
+					{
+						temp = atof(&ch);
+						temp1 = temp;
+						ch = array[++j];
+					}
 						
 					if (ch=='.')									//if number has '.'
 					{
 							ch=array[++j];
 							temp=temp+atof(&ch)/pow(10,i);
 							i++;
+							ch=array[++j];
 							j++;
-							for (ch=array[j];!is_OPTR(ch);j++,i++)
-								temp=temp+atof(&ch)/pow(10,i);								
+							for (; !is_OPTR(ch); j++, i++)
+							{
+								temp=temp+atof(&ch)/pow(10,i);	
+								ch = array[j];
+							}
+															
 					}
 					else if (isdigit(ch))
-						temp=temp*10+atof(&ch);	
+					{
+						temp=temp*10+atof(&ch);
+						ch = array[++j];
+					}
+						
 					else if (ch == '^')								//the function of '^'
 					{
 						
 						ch = array[++j];
 						temp = atof(&ch);
 						ch = array[++j];
-						if (isdigit(ch))
+						if (isdigit(ch)||ch=='.')
 						{
-							if (ch == '.')
+							if (ch == '.')									//if number has '.'
 							{
 								ch = array[++j];
 								temp = temp + atof(&ch) / pow(10, i);
 								i++;
+								ch = array[++j];
 								j++;
-								for (ch = array[j]; !is_OPTR(ch); j++, i++)
+								for (; !is_OPTR(ch); j++, i++)
+								{
 									temp = temp + atof(&ch) / pow(10, i);
+									ch = array[j];
+								}
 							}
-						else if (isdigit(ch))
-							temp = temp * 10 + atof(&ch);
+							else if (isdigit(ch))
+							{
+								temp = temp * 10 + atof(&ch);
+								ch = array[++j];
+							}	
 						}
-						temp = pow(temp1, temp);
+						temp = pow(temp1, temp);	
 					}
-					Push_OPND(&opnd,temp);									//after operating,push the result into stack
+					if (ch!='.'||is_OPTR(ch))						//after operating,push the result into stack
+						Push_OPND(&opnd, temp);
+					
 				}
 				else 
 				{
@@ -248,16 +269,20 @@ void operate()
 								ch = array[++j];
 								temp = atof(&ch);
 								ch = array[++j];
-								if (isdigit(ch))									
+								if (isdigit(ch)||ch=='.')									
 								{
-									if (ch == '.')
+									if (ch == '.')									//if number has '.'
 									{
 										ch = array[++j];
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
+										ch = array[++j];
 										j++;
-										for (ch = array[j]; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch); j++, i++)
+										{
 											temp = temp + atof(&ch) / pow(10, i);
+											ch = array[j];
+										}
 									}
 									else if (isdigit(ch))
 										temp = temp * 10 + atof(&ch);
@@ -277,16 +302,20 @@ void operate()
 								ch = array[++j];
 								temp = atof(&ch);
 								ch = array[++j];
-								if (isdigit(ch))
+								if (isdigit(ch) || ch == '.')
 								{
-									if (ch == '.')
+									if (ch == '.')									//if number has '.'
 									{
 										ch = array[++j];
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
+										ch = array[++j];
 										j++;
-										for (ch = array[j]; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch); j++, i++)
+										{
 											temp = temp + atof(&ch) / pow(10, i);
+											ch = array[j];
+										}
 									}
 									else if (isdigit(ch))
 										temp = temp * 10 + atof(&ch);
@@ -306,16 +335,20 @@ void operate()
 								ch = array[++j];
 								temp = atof(&ch);
 								ch = array[++j];
-								if (isdigit(ch))
+								if (isdigit(ch) || ch == '.')
 								{
-									if (ch == '.')
+									if (ch == '.')									//if number has '.'
 									{
 										ch = array[++j];
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
+										ch = array[++j];
 										j++;
-										for (ch = array[j]; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch); j++, i++)
+										{
 											temp = temp + atof(&ch) / pow(10, i);
+											ch = array[j];
+										}
 									}
 									else if (isdigit(ch))
 										temp = temp * 10 + atof(&ch);
@@ -328,16 +361,20 @@ void operate()
 								ch = array[++j];
 								temp = atof(&ch);
 								ch = array[++j];
-								if (isdigit(ch))
+								if (isdigit(ch) || ch == '.')
 								{
-									if (ch == '.')
+									if (ch == '.')									//if number has '.'
 									{
 										ch = array[++j];
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
+										ch = array[++j];
 										j++;
-										for (ch = array[j]; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch); j++, i++)
+										{
 											temp = temp + atof(&ch) / pow(10, i);
+											ch = array[j];
+										}
 									}
 									else if (isdigit(ch))
 										temp = temp * 10 + atof(&ch);
