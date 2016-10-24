@@ -210,18 +210,22 @@ void operate()
 							temp=temp+atof(&ch)/pow(10,i);
 							i++;
 							ch=array[++j];
-							j++;
-							for (; !is_OPTR(ch); j++, i++)
+							for (; !is_OPTR(ch); i++)
 							{
 								temp=temp+atof(&ch)/pow(10,i);	
-								ch = array[j];
+								ch = array[++j];
 							}
 															
 					}
 					else if (isdigit(ch))
 					{
-						temp=temp*10+atof(&ch);
+						temp = temp * 10 + atof(&ch);
 						ch = array[++j];
+						for (; !is_OPTR(ch)&&ch != '.';)
+						{
+							temp = temp * 10 + atof(&ch);
+							ch = array[++j];
+						}
 					}
 						
 					else if (ch == '^')								//the function of '^'
@@ -238,17 +242,21 @@ void operate()
 								temp = temp + atof(&ch) / pow(10, i);
 								i++;
 								ch = array[++j];
-								j++;
-								for (; !is_OPTR(ch); j++, i++)
+								for (; !is_OPTR(ch); i++)
 								{
 									temp = temp + atof(&ch) / pow(10, i);
-									ch = array[j];
+									ch = array[++j];
 								}
 							}
 							else if (isdigit(ch))
 							{
 								temp = temp * 10 + atof(&ch);
 								ch = array[++j];
+								for ( ;!is_OPTR(ch)&&ch!='.';)
+								{
+									temp = temp * 10 + atof(&ch);
+									ch = array[++j];
+								}
 							}	
 						}
 						temp = pow(temp1, temp);	
@@ -277,15 +285,22 @@ void operate()
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
 										ch = array[++j];
-										j++;
-										for (; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch); i++)
 										{
 											temp = temp + atof(&ch) / pow(10, i);
-											ch = array[j];
+											ch = array[++j];
 										}
 									}
 									else if (isdigit(ch))
+									{
 										temp = temp * 10 + atof(&ch);
+										ch = array[++j];
+										for (; !is_OPTR(ch)&&ch != '.';)
+										{
+											temp = temp * 10 + atof(&ch);
+											ch = array[++j];
+										}
+									}
 								}
 								temp = sin(temp);
 								Push_OPND(&opnd, temp);
@@ -310,15 +325,22 @@ void operate()
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
 										ch = array[++j];
-										j++;
-										for (; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch); i++)
 										{
 											temp = temp + atof(&ch) / pow(10, i);
-											ch = array[j];
+											ch = array[++j];
 										}
 									}
 									else if (isdigit(ch))
+									{
 										temp = temp * 10 + atof(&ch);
+										ch = array[++j];
+										for (; !is_OPTR(ch)&&ch != '.';)
+										{
+											temp = temp * 10 + atof(&ch);
+											ch = array[++j];
+										}
+									}
 								}
 								temp = cos(temp);
 								Push_OPND(&opnd, temp);
@@ -343,15 +365,22 @@ void operate()
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
 										ch = array[++j];
-										j++;
-										for (; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch);i++)
 										{
 											temp = temp + atof(&ch) / pow(10, i);
-											ch = array[j];
+											ch = array[++j];
 										}
 									}
 									else if (isdigit(ch))
+									{
 										temp = temp * 10 + atof(&ch);
+										ch = array[++j];
+										for (; !is_OPTR(ch)&&ch != '.';)
+										{
+											temp = temp * 10 + atof(&ch);
+											ch = array[++j];
+										}
+									}
 								}
 								temp = log10(temp);
 								Push_OPND(&opnd, temp);
@@ -369,15 +398,22 @@ void operate()
 										temp = temp + atof(&ch) / pow(10, i);
 										i++;
 										ch = array[++j];
-										j++;
-										for (; !is_OPTR(ch); j++, i++)
+										for (; !is_OPTR(ch);  i++)
 										{
 											temp = temp + atof(&ch) / pow(10, i);
-											ch = array[j];
+											ch = array[++j];
 										}
 									}
 									else if (isdigit(ch))
+									{
 										temp = temp * 10 + atof(&ch);
+										ch = array[++j];
+										for (; !is_OPTR(ch)&&ch != '.';)
+										{
+											temp = temp * 10 + atof(&ch);
+											ch = array[++j];
+										}
+									}
 								}
 								temp = log(temp);
 								Push_OPND(&opnd, temp);
